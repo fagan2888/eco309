@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>6 Optimization tutorial - ECO309</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+        <link href="../../css/ansi-colours.css" rel="stylesheet">
+        <link href="../../css/jupyter-cells.css" rel="stylesheet">
+        <link href="../../css/pandas-dataframe.css" rel="stylesheet">
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">ECO309</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../0_General_Introduction/" class="nav-link">Introduction</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../optim_slides/" class="nav-link">Optimization</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../test/" class="nav-link">More content</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#optimization-tutorial" class="nav-link">Optimization (tutorial)</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#profit-optimization-by-a-monopolist" class="nav-link">Profit optimization by a monopolist</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#modified-solow-model" class="nav-link">(modified) Solow model</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#exercise-constrained-optimization" class="nav-link">Exercise: constrained optimization</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#consumption-optimization" class="nav-link">Consumption optimization</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script>
+(function() {
+  function addWidgetsRenderer() {
+    var mimeElement = document.querySelector('script[type="application/vnd.jupyter.widget-view+json"]');
+    var scriptElement = document.createElement('script');
+    var widgetRendererSrc = 'https://unpkg.com/@jupyter-widgets/html-manager@*/dist/embed-amd.js';
+    var widgetState;
+
+    // Fallback for older version:
+    try {
+      widgetState = mimeElement && JSON.parse(mimeElement.innerHTML);
+
+      if (widgetState && (widgetState.version_major < 2 || !widgetState.version_major)) {
+        widgetRendererSrc = 'jupyter-js-widgets@*/dist/embed.js';
+      }
+    } catch(e) {}
+
+    scriptElement.src = widgetRendererSrc;
+    document.body.appendChild(scriptElement);
+  }
+
+  document.addEventListener('DOMContentLoaded', addWidgetsRenderer);
+}());
+</script>
+
+<div class="cell border-box-sizing text_cell rendered">
+<p><div class="inner_cell" markdown="1">
+<div class="text_cell_render border-box-sizing rendered_html" markdown="1"></p>
+<h1 id="optimization-tutorial">Optimization (tutorial)</h1>
+<p>In this tutorial you will learn to code and use common optimization algorithms for static models.
+</div>
+</div></p>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<p><div class="inner_cell" markdown="1">
+<div class="text_cell_render border-box-sizing rendered_html" markdown="1"></p>
+<hr />
+<h2 id="profit-optimization-by-a-monopolist">Profit optimization by a monopolist</h2>
+<p>A monopolist produces quantity <span><span class="MathJax_Preview">q</span><script type="math/tex">q</script></span> of goods X at price <span><span class="MathJax_Preview">p</span><script type="math/tex">p</script></span>. Its cost function is <span><span class="MathJax_Preview">c(q) = 0.5 + q (1-qe^{-q})</span><script type="math/tex">c(q) = 0.5 + q (1-qe^{-q})</script></span></p>
+<p>The consumer's demand for price <span><span class="MathJax_Preview">p</span><script type="math/tex">p</script></span> is <span><span class="MathJax_Preview">x(p)=2 e^{-0.5 p}</span><script type="math/tex">x(p)=2 e^{-0.5 p}</script></span> (constant elasticity of demand to price).</p>
+<p><strong>Write down the profit function of the monopolist and find the optimal production (if any). Don't use any library except for plotting.</strong></p>
+</div>
+</div>
+
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<p><div class="inner_cell" markdown="1">
+<div class="text_cell_render border-box-sizing rendered_html" markdown="1"></p>
+<hr />
+<h2 id="modified-solow-model">(modified) Solow model</h2>
+<p>This model tries to explain long-term productivity, its relation to productivity and the speed of convergence.</p>
+<p>The setup is the following:</p>
+<ul>
+<li>a country accumulates capital <span><span class="MathJax_Preview">k_t</span><script type="math/tex">k_t</script></span></li>
+<li>population <span><span class="MathJax_Preview">n_t</span><script type="math/tex">n_t</script></span> grows at rate <span><span class="MathJax_Preview">g</span><script type="math/tex">g</script></span> (so that <span><span class="MathJax_Preview">n_{t+1}=g n_t</span><script type="math/tex">n_{t+1}=g n_t</script></span></li>
+<li>capital and labour are combined to produce <span><span class="MathJax_Preview">y_t = A F(k_t, n_t)</span><script type="math/tex">y_t = A F(k_t, n_t)</script></span> where <span><span class="MathJax_Preview">A&gt;0</span><script type="math/tex">A>0</script></span> is total factor productivity.</li>
+<li>capital depreciates at rate <span><span class="MathJax_Preview">\delta \in ]0,1[</span><script type="math/tex">\delta \in ]0,1[</script></span>. Its law of motion is <span><span class="MathJax_Preview">k_{t+1}=k_{t}+i_{t}</span><script type="math/tex">k_{t+1}=k_{t}+i_{t}</script></span> where <span><span class="MathJax_Preview">i_t</span><script type="math/tex">i_t</script></span> is the amount invested at time <span><span class="MathJax_Preview">t</span><script type="math/tex">t</script></span></li>
+<li>production is either consumed or invested: <span><span class="MathJax_Preview">y_t = c_t + i_t</span><script type="math/tex">y_t = c_t + i_t</script></span></li>
+</ul>
+<p>We choose a Cobb-Douglas specification with constant returns to scale <span><span class="MathJax_Preview">F(k_t, n_t) = A k_t^{\alpha} n_t^{1-\alpha}</span><script type="math/tex">F(k_t, n_t) = A k_t^{\alpha} n_t^{1-\alpha}</script></span>.</p>
+<p>In the Ramsey–Cass–Koopmans  model (also called neoclassical growth model), a representative agent would choose <span><span class="MathJax_Preview">c_t</span><script type="math/tex">c_t</script></span> in every period so as to maximize an intertemporal utility like <span><span class="MathJax_Preview">\sum_{t \geq 0} \beta^t U(c_t)</span><script type="math/tex">\sum_{t \geq 0} \beta^t U(c_t)</script></span> where <span><span class="MathJax_Preview">\beta \in [0,1[</span><script type="math/tex">\beta \in [0,1[</script></span> is a time discount and <span><span class="MathJax_Preview">U(x)=\frac{x^{1-\gamma}}{1-\gamma}</span><script type="math/tex">U(x)=\frac{x^{1-\gamma}}{1-\gamma}</script></span> is the instantaneous felicity.</p>
+<p>Here we follow the Solow-Swan specification and assume instead there is a fixed fraction <span><span class="MathJax_Preview">s\in[0,1[</span><script type="math/tex">s\in[0,1[</script></span> of income in every period, which is saved and invested in every period. In other words investment (or savings) is given by:</p>
+<div>
+<div class="MathJax_Preview">i_t = s y_t</div>
+<script type="math/tex; mode=display">i_t = s y_t</script>
+</div>
+<p>As a result, the dynamic of capital and all other variables will be backward looking and can be simulated easily.
+</div>
+</div></p>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<p><div class="inner_cell" markdown="1">
+<div class="text_cell_render border-box-sizing rendered_html" markdown="1">
+<strong>Calibrate parameters <span><span class="MathJax_Preview">\beta</span><script type="math/tex">\beta</script></span>, <span><span class="MathJax_Preview">\delta</span><script type="math/tex">\delta</script></span> and <span><span class="MathJax_Preview">g</span><script type="math/tex">g</script></span>, that is, propose plausible values for them, from the litterature, or by matching some observable fact.</strong>
+</div>
+</div></p>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<p><div class="inner_cell" markdown="1">
+<div class="text_cell_render border-box-sizing rendered_html" markdown="1">
+<strong>Detrend the equations of the model w.r.t. population growth. Denote the detrended variables with a hat (in the code we assume all variables are detrended and ignore the hat).</strong>
+</div>
+</div></p>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<p><div class="inner_cell" markdown="1">
+<div class="text_cell_render border-box-sizing rendered_html" markdown="1">
+Our goal is to compute the steady-state and assess its stability.</p>
+<p><strong>Compute a function <code>f</code> which returns the capital <span><span class="MathJax_Preview">\hat{k}_{t+1}</span><script type="math/tex">\hat{k}_{t+1}</script></span> as a function of <span><span class="MathJax_Preview">\hat{k_t}</span><script type="math/tex">\hat{k_t}</script></span>. It is suggested to define <code>f(k::Float64, p::Dict{Symbol, Float64})</code> where <code>p</code> is a dictionary of parameters.</strong>
+</div>
+</div></p>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<p><div class="inner_cell" markdown="1">
+<div class="text_cell_render border-box-sizing rendered_html" markdown="1">
+ (note: such a dictionary can be defined as <code>p = Dict(:a=&gt;0.9, :b=&gt;4)</code> and accessed with brackets <code>p[:a]</code> or <code>p[:b]</code>) (note2: symbols like <code>:a</code> or <code>:b</code> are lightweight string. The content must be a valid julia identifier so that it is valid to write <code>a=p[:a]</code>)
+</div>
+</div></p>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<p><div class="inner_cell" markdown="1">
+<div class="text_cell_render border-box-sizing rendered_html" markdown="1">
+<strong>Starting from an initial level <span><span class="MathJax_Preview">\hat{k}_0</span><script type="math/tex">\hat{k}_0</script></span> compute successive iterates of <code>f</code> to find the long-run level <span><span class="MathJax_Preview">\overline{k}</span><script type="math/tex">\overline{k}</script></span> of capital per capita. (Bonus: produce a nice plot of the convergence)</strong>
+</div>
+</div></p>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<p><div class="inner_cell" markdown="1">
+<div class="text_cell_render border-box-sizing rendered_html" markdown="1">
+<strong>What factors affect the steady-state level of capital?</strong>
+</div>
+</div></p>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<p><div class="inner_cell" markdown="1">
+<div class="text_cell_render border-box-sizing rendered_html" markdown="1">
+<strong>Study the stability of <span><span class="MathJax_Preview">f</span><script type="math/tex">f</script></span> around <span><span class="MathJax_Preview">\overline{k}</span><script type="math/tex">\overline{k}</script></span>. Which factors affect the speed of convergence towards the steady-state?</strong>
+</div>
+</div></p>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<p><div class="inner_cell" markdown="1">
+<div class="text_cell_render border-box-sizing rendered_html" markdown="1">
+<strong>Compute the steady-state directly using a Newton method and compare convergence speed.</strong>
+</div>
+</div></p>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<p><div class="inner_cell" markdown="1">
+<div class="text_cell_render border-box-sizing rendered_html" markdown="1">
+<strong>Suppose one tries to maximize steady-state consumption by choosing saving rate <span><span class="MathJax_Preview">s</span><script type="math/tex">s</script></span>. Which value would one choose?</strong>
+</div>
+</div></p>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<p><div class="inner_cell" markdown="1">
+<div class="text_cell_render border-box-sizing rendered_html" markdown="1">
+<strong>(Bonus) Suppose an agent is given the intertemporal utility from the Ramsey–Cass–Koopmans model but chooses saving rate once for all. Which saving rate would one choose? Is it the same for all initial levels of capital?</strong></p>
+</div>
+</div>
+
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<p><div class="inner_cell" markdown="1">
+<div class="text_cell_render border-box-sizing rendered_html" markdown="1"></p>
+<hr />
+<h2 id="exercise-constrained-optimization">Exercise: constrained optimization</h2>
+<p>Consider the function <span><span class="MathJax_Preview">f(x,y) = 1-(x-0.5)^2 -(y-0.3)^2</span><script type="math/tex">f(x,y) = 1-(x-0.5)^2 -(y-0.3)^2</script></span>.</p>
+<p><strong>Use Optim.jl to minimize <span><span class="MathJax_Preview">f</span><script type="math/tex">f</script></span> without constraint. Check you understand diagnostic information returned by the optimizer.</strong>
+</div>
+</div></p>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<p><div class="inner_cell" markdown="1">
+<div class="text_cell_render border-box-sizing rendered_html" markdown="1">
+<strong>Now, consider the constraint <span><span class="MathJax_Preview">x&lt;0.3</span><script type="math/tex">x<0.3</script></span> and maximize <span><span class="MathJax_Preview">f</span><script type="math/tex">f</script></span> under this new constraint.</strong>
+</div>
+</div></p>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<p><div class="inner_cell" markdown="1">
+<div class="text_cell_render border-box-sizing rendered_html" markdown="1">
+<strong>Reformulate the problem as a root finding with lagrangians. Write the complementarity conditions.</strong>
+</div>
+</div></p>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<p><div class="inner_cell" markdown="1">
+<div class="text_cell_render border-box-sizing rendered_html" markdown="1">
+<strong>Solve using NLSolve.jl</strong>
+</div>
+</div></p>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<p><div class="inner_cell" markdown="1">
+<div class="text_cell_render border-box-sizing rendered_html" markdown="1"></p>
+<hr />
+<h2 id="consumption-optimization">Consumption optimization</h2>
+<p>A consumer has preferences <span><span class="MathJax_Preview">U(c_1, c_2)</span><script type="math/tex">U(c_1, c_2)</script></span> over two consumption goods <span><span class="MathJax_Preview">c_1</span><script type="math/tex">c_1</script></span> and <span><span class="MathJax_Preview">c_2</span><script type="math/tex">c_2</script></span>.</p>
+<p>Given a budget <span><span class="MathJax_Preview">I</span><script type="math/tex">I</script></span>, consumer wants to maximize utility subject to the budget constraint <span><span class="MathJax_Preview">p_1 c_1 + p_2 c_2 \leq I</span><script type="math/tex">p_1 c_1 + p_2 c_2 \leq I</script></span>.</p>
+<p>We choose a Stone-Geary specification where</p>
+<p><span><span class="MathJax_Preview">U(c_1, c_2)=\beta_1 \log(c_1-\gamma_1) + \beta_2 \log(c_2-\gamma_2)</span><script type="math/tex">U(c_1, c_2)=\beta_1 \log(c_1-\gamma_1) + \beta_2 \log(c_2-\gamma_2)</script></span></p>
+<p><strong>Write the Karush-Kuhn-Tucker necessary conditions for the problem.</strong>
+</div>
+</div></p>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<p><div class="inner_cell" markdown="1">
+<div class="text_cell_render border-box-sizing rendered_html" markdown="1">
+<strong>Verify the KKT conditions are sufficient for optimality.</strong>
+</div>
+</div></p>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<p><div class="inner_cell" markdown="1">
+<div class="text_cell_render border-box-sizing rendered_html" markdown="1">
+<strong>Derive analytically the demand functions, and the shadow price.</strong>
+</div>
+</div></p>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<p><div class="inner_cell" markdown="1">
+<div class="text_cell_render border-box-sizing rendered_html" markdown="1">
+<strong>Interpret this problem as a complementarity problem and solve it using NLSolve.</strong>
+</div>
+</div></p>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<p><div class="inner_cell" markdown="1">
+<div class="text_cell_render border-box-sizing rendered_html" markdown="1">
+<strong>Produce some nice graphs with isoutility curves, the budget constraint and the optimal choice.</strong></p>
+</div>
+</div>
+
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="highlight"><pre><span></span><code>
+</code></pre></div>
+
+</div>
+
+</div></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+
+        <div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

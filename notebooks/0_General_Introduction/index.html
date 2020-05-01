@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>Introduction - ECO309</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+        <link href="../../css/ansi-colours.css" rel="stylesheet">
+        <link href="../../css/jupyter-cells.css" rel="stylesheet">
+        <link href="../../css/pandas-dataframe.css" rel="stylesheet">
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">ECO309</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem active">
+                                <a href="./" class="nav-link">Introduction</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../optim_slides/" class="nav-link">Optimization</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../test/" class="nav-link">More content</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a rel="prev" class="nav-link disabled">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../../optim_slides/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#computational-economics-eco309" class="nav-link">Computational Economics  (ECO309)</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#introduction" class="nav-link">Introduction</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script>
+(function() {
+  function addWidgetsRenderer() {
+    var mimeElement = document.querySelector('script[type="application/vnd.jupyter.widget-view+json"]');
+    var scriptElement = document.createElement('script');
+    var widgetRendererSrc = 'https://unpkg.com/@jupyter-widgets/html-manager@*/dist/embed-amd.js';
+    var widgetState;
+
+    // Fallback for older version:
+    try {
+      widgetState = mimeElement && JSON.parse(mimeElement.innerHTML);
+
+      if (widgetState && (widgetState.version_major < 2 || !widgetState.version_major)) {
+        widgetRendererSrc = 'jupyter-js-widgets@*/dist/embed.js';
+      }
+    } catch(e) {}
+
+    scriptElement.src = widgetRendererSrc;
+    document.body.appendChild(scriptElement);
+  }
+
+  document.addEventListener('DOMContentLoaded', addWidgetsRenderer);
+}());
+</script>
+
+<div class="cell border-box-sizing text_cell rendered">
+<p><div class="inner_cell" markdown="1">
+<div class="text_cell_render border-box-sizing rendered_html" markdown="1"></p>
+<h1 id="computational-economics-eco309">Computational Economics  (ECO309)</h1>
+<h2 id="introduction">Introduction</h2>
+<p></div>
+</div></p>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<p><div class="inner_cell" markdown="1">
+<div class="text_cell_render border-box-sizing rendered_html" markdown="1"></p>
+<h3 id="communication-for-this-course">Communication for this Course</h3>
+<ul>
+<li>zoom/jitsi for the course</li>
+<li>github repository for the course: https://github.com/albop/eco309</li>
+<li>enroll by:<ul>
+<li>creating a github account if needed</li>
+<li>cloning the repository</li>
+<li>making a PR on students.md</li>
+</ul>
+</li>
+<li>join on <a href="econforge.zulipchat.org">Zulip</a> : we'll communicate in the eco309 room<ul>
+<li>you're welcome to ask questions and answer other's questions (nicely)</li>
+<li>outside of the course hours, I'll answer when I can</li>
+</ul>
+</li>
+<li>formal or infrequent communication: <code>pwinant@escp.eu</code> with subject starting by <code>ECO309</code></li>
+</ul>
+</div>
+</div>
+
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<p><div class="inner_cell" markdown="1">
+<div class="text_cell_render border-box-sizing rendered_html" markdown="1"></p>
+<h3 id="assignments-and-final-exam">Assignments and Final Exam</h3>
+<ul>
+<li>Hands-on tutorial started in class must be (reasonably) completed by Friday night.<ul>
+<li>Do not send by email. Just commit the work in your clone.</li>
+</ul>
+</li>
+<li>There will be two special assignments with 7 days to complete each of them.</li>
+<li>Groupwork is OK as long as groups rotate.</li>
+<li>Final Exam will be a programming problem set to be taken individually.</li>
+<li>Final Grade will weight everything.
+</div>
+</div></li>
+</ul>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<p><div class="inner_cell" markdown="1">
+<div class="text_cell_render border-box-sizing rendered_html" markdown="1"></p>
+<h3 id="other-sources-of-information">Other sources of information</h3>
+<ul>
+<li>Course is supposed to be self-contained for its Math and Econ aspects.</li>
+<li>
+<p>Books:</p>
+<ul>
+<li><em>Economic Dynamics: Theory and Computation</em> by John Stahurski</li>
+<li><em>Computational Economics</em> by Miranda &amp; Fackler</li>
+<li><em>Recursive macreconomic theory</em> by Lars Ljungqvist &amp; Tom Sargent</li>
+</ul>
+</li>
+<li>
+<p>Online:</p>
+<ul>
+<li><a href="https://quantecon.org/lectures/">QuantEcon lectures</a></li>
+<li>... and all the Julia material
+</div>
+</div></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<p><div class="inner_cell" markdown="1">
+<div class="text_cell_render border-box-sizing rendered_html" markdown="1"></p>
+<h3 id="about-me">About me</h3>
+<ul>
+<li>A computational economist</li>
+<li>Formerly Worked in institutions (IMF, BOE)</li>
+<li>Now at ESCP and CREST/Polytechnique</li>
+<li>Research on models about:<ul>
+<li>Inequality (heterogeneity)</li>
+<li>International Finance</li>
+<li>Monetary Policy</li>
+<li>Artificial Intelligence</li>
+</ul>
+</li>
+<li>Involved in several opensource projects (Dolo, QuantEcon, ARK)
+</div>
+</div></li>
+</ul>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<p><div class="inner_cell" markdown="1">
+<div class="text_cell_render border-box-sizing rendered_html" markdown="1"></p>
+<h3 id="content-of-the-course">Content of the course</h3>
+<ul>
+<li>
+<p>Computational Economics is made of:</p>
+<ul>
+<li>Applied Math (theory)</li>
+<li>Programming (techniques)</li>
+<li>Economic Modeling (expertise)</li>
+</ul>
+</li>
+<li>
+<p>We'll alternate between the three faces of the coin</p>
+<ul>
+<li>with a stronger than usual emphasis on Programming skills</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<p><div class="inner_cell" markdown="1">
+<div class="text_cell_render border-box-sizing rendered_html" markdown="1"></p>
+<h3 id="math">Math</h3>
+<ul>
+<li>We won't be used very advanced math<ul>
+<li>linear algebra, Banach spaces, a bit of probabilities</li>
+<li>working knowledge is fine</li>
+<li>(almost) no proofs</li>
+</ul>
+</li>
+<li>but in a context where advanced math is an option...<ul>
+<li>functional spaces...</li>
+</ul>
+</li>
+<li>applied math: essentially describes the algorithms and their validity/convergence properties
+</div>
+</div></li>
+</ul>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<p><div class="inner_cell" markdown="1">
+<div class="text_cell_render border-box-sizing rendered_html" markdown="1"></p>
+<h3 id="models">Models</h3>
+<ul>
+<li>See a variety of models:<ul>
+<li>static market determination</li>
+<li>dynamic optimization (continous or discrete)</li>
+<li>Dynamic Stochastic General Equilibrium models (DSGE)</li>
+</ul>
+</li>
+<li>
+<p>In discrete time</p>
+<ul>
+<li>to avoid discretization schemes and stochastic calculus</li>
+</ul>
+</li>
+<li>
+<p>Usually a model is specified by equations and some parameter values:</p>
+<ul>
+<li>no closed form, most of the time</li>
+<li>goal is to "solve" the model to study properties of its solutions</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<p><div class="inner_cell" markdown="1">
+<div class="text_cell_render border-box-sizing rendered_html" markdown="1"></p>
+<h3 id="models_1">Models</h3>
+<ul>
+<li>random exemples of questions we can analyse numerically:<ul>
+<li>which sectors should receive more help during the coronavirus (CGE)?</li>
+<li>when is it time to replace a machine? how much water should be extracted? how much should be stored? (dynamic programming)</li>
+<li>what kind of shock drives the business cycles? (DSGE models)</li>
+<li>is a Central Bank able to commit to intervene in the markets?
+</div>
+</div></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<p><div class="inner_cell" markdown="1">
+<div class="text_cell_render border-box-sizing rendered_html" markdown="1">
+Video upcoming
+</div>
+</div></p>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<p><div class="inner_cell" markdown="1">
+<div class="text_cell_render border-box-sizing rendered_html" markdown="1"></p>
+<h3 id="why-economics-is-not-physics-1">Why economics is not Physics (1)</h3>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/bmUAKkisAFo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<ul>
+<li>Easy!: you just swap particles for people, and simulate (or solve an IVP problem)</li>
+<li><em>NO</em>: Not only local interactions: economic agents interact in many ways, including through markets<ul>
+<li>All agents/prices must be solved at the same time
+</div>
+</div></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<p><div class="inner_cell" markdown="1">
+<div class="text_cell_render border-box-sizing rendered_html" markdown="1"></p>
+<h3 id="why-economics-is-not-physics-2">Why economics is not Physics (2)</h3>
+<p><img alt="FEM" src="../graphs/fem.png" /></p>
+<ul>
+<li>Easy!: it's a differential equation with boundary values (BVP)</li>
+<li><em>NO</em>: agents think, they are forward looking and respond to other agents' decisions
+</div>
+</div></li>
+</ul>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<p><div class="inner_cell" markdown="1">
+<div class="text_cell_render border-box-sizing rendered_html" markdown="1"></p>
+<h3 id="what-makes-the-life-of-computational-economists-hard">What makes the life of computational economists hard:</h3>
+<ul>
+<li>
+<p>Agents are rationnal, they should consider all possible outcomes and all decisions (and those of others...) in the future to make a decision today
+    <img alt="bm" src="../graphs/brownian_motion.png" /></p>
+</li>
+<li>
+<p>Very complex problem: curse of dimensionality when more than a few variables</p>
+</li>
+<li>Wait, that's crazy! People are not that smart, let's make simplifying assumptions about their behaviour<ul>
+<li>agent based approach</li>
+<li>methodological issues: too many possible predictions, too many parameters
+</div>
+</div></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<p><div class="inner_cell" markdown="1">
+<div class="text_cell_render border-box-sizing rendered_html" markdown="1"></p>
+<h3 id="why-should-you-learn-to-program">Why should you learn to program ?</h3>
+<ul>
+<li>Econometricians, modellers, data scientists, spend a lot of time writing code<ul>
+<li>and do it inefficiently...</li>
+</ul>
+</li>
+<li>Programming efficiently requires awareness of<ul>
+<li>certain basic concepts: (types, control flow, functions, objects)</li>
+<li>some tools (programming language, code versioning, command line)</li>
+<li>which are never taught...</li>
+</ul>
+</li>
+<li>And yet they are very easy to learn<ul>
+<li>anyone can become an expert !
+</div>
+</div></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<p><div class="inner_cell" markdown="1">
+<div class="text_cell_render border-box-sizing rendered_html" markdown="1"></p>
+<h3 id="now-is-the-right-time">Now is the right time !</h3>
+<ul>
+<li>
+<p>A lot of demand everywhere for skilled programmers.</p>
+</li>
+<li>
+<p>Many faculties are introducing formal programming courses (for economists)</p>
+<ul>
+<li>MIT, NYU, Penn, ...</li>
+<li>Summer Bootcamps</li>
+</ul>
+</li>
+<li>
+<p>New applications are even more code-intensive than before:</p>
+<ul>
+<li>data science</li>
+<li>machine learning</li>
+<li>modeling
+</div>
+</div></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<p><div class="inner_cell" markdown="1">
+<div class="text_cell_render border-box-sizing rendered_html" markdown="1"></p>
+<h3 id="do-it-in-the-open">Do it in the open !</h3>
+<ul>
+<li>
+<p>Many excellent online resources:</p>
+<ul>
+<li><a href="https://software-carpentry.org/">Software Carpentry</a></li>
+<li><a href="https://quantecon.org/news-item/need-for-speed-in-julia">QuantEcon</a> from Tom Sargent and John Stachurski</li>
+<li><a href="https://julialang.org/learning/">Julia manuals/tutorials</a></li>
+</ul>
+</li>
+<li>
+<p>Opensource community is very welcoming:</p>
+<ul>
+<li>ask on mailing lists or online chats (Julia users, quantecon, dynare, ...)</li>
+<li>open issues (for instance against Dolo <a href="https://github.com/EconForge/Dolo.jl/issues">https://github.com/EconForge/Dolo.jl/issues</a></li>
+<li>participating is also a great occasion to learn
+</div>
+</div></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<p><div class="inner_cell" markdown="1">
+<div class="text_cell_render border-box-sizing rendered_html" markdown="1"></p>
+<h3 id="setup">Setup</h3>
+<p>You need:</p>
+<ul>
+<li>a working installation of Julia 1.4. If you don't have one, download <a href="https://juliacomputing.com/products/juliapro">JuliaPro</a><ul>
+<li>Julia includes its own distribution of Python with </li>
+</ul>
+</li>
+<li>git ( <a href="https://git-scm.com/downloads">download</a> )
+</div>
+</div></li>
+</ul>
+</div></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+
+        <div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

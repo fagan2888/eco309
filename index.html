@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="None">
+        
+        
+        <link rel="shortcut icon" href="img/favicon.ico">
+        <title>ECO309</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/font-awesome.min.css" rel="stylesheet">
+        <link href="css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+        <link href="css/ansi-colours.css" rel="stylesheet">
+        <link href="css/jupyter-cells.css" rel="stylesheet">
+        <link href="css/pandas-dataframe.css" rel="stylesheet">
+
+        <script src="js/jquery-1.10.2.min.js" defer></script>
+        <script src="js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body class="homepage">
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href=".">ECO309</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="notebooks/0_General_Introduction/" class="nav-link">Introduction</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="optim_slides/" class="nav-link">Optimization</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="test/" class="nav-link">More content</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#welcome-to-eco309" class="nav-link">Welcome to ECO309</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#general" class="nav-link">General</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#setup-requirement" class="nav-link">Setup requirement</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#roadmap" class="nav-link">Roadmap</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="welcome-to-eco309">Welcome to ECO309</h1>
+<h2 id="general">General</h2>
+<p>All the course material is written inside notebooks. Notebooks whose filename ends with <code>_slides_</code> are meant to be viewed with <code>Rise</code> or <code>Voila-reveal</code>. Those ending with <code>_tutorial</code> are meant to be run and filled by students.</p>
+<p>Each student is expected to have a clone of the course repository, and commit his completed tutorials by Friday night. Intermediary assignments must be done in the same fashion by the next Friday.</p>
+<p>During the course, each student will be asked to choose and present one Julia library.</p>
+<p>The tutorial in the last session will be the final exam.</p>
+<h2 id="setup-requirement">Setup requirement</h2>
+<p>To make the most of the course, it is recommended to install</p>
+<ul>
+<li>JuliaPro 1.4 (or Julia 1.4 + a good text editor + JupyterLab)</li>
+<li>Git</li>
+</ul>
+<h2 id="roadmap">Roadmap</h2>
+<p>Each session is 4 hours, and expected to be evenly but not contiguously divided between lectures and hands-on tutorials.</p>
+<h3 id="session-1">Session 1</h3>
+<ul>
+<li>General Introduction</li>
+<li>Git + Linux</li>
+<li>Setup</li>
+<li>Julia: Basics<ul>
+<li>...</li>
+</ul>
+</li>
+<li>Tutorial: contagion model</li>
+</ul>
+<h3 id="session-2">Session 2</h3>
+<ul>
+<li>Math: Series Convergence, Optimization (1)</li>
+<li>Julia: Git/Linux</li>
+</ul>
+<h3 id="session-3">Session 3</h3>
+<ul>
+<li>Math: Optimization (2)</li>
+<li>Julia Basics 2</li>
+<li>Models:<ul>
+<li>profit optimization</li>
+<li>solow model</li>
+<li>consumer choice</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h3 id="session-3_1">Session 3</h3>
+<ul>
+<li>Math: Markov Chains, Value iteration</li>
+<li>Julia: Types, Multiple Dispatch</li>
+<li>Models: Discrete Dynamic Programming<ul>
+<li>job search</li>
+<li>ressource management</li>
+</ul>
+</li>
+</ul>
+<h3 id="session-4">Session 4</h3>
+<ul>
+<li>Julia: performance (1)</li>
+<li>Math: Probabilities and Integration, Distributions</li>
+<li>Simulation heavy models:<ul>
+<li>asset pricing (1)</li>
+</ul>
+</li>
+</ul>
+<h3 id="session-5">Session 5</h3>
+<ul>
+<li>Math: Differentiation, Perturbation, Linear Algebra</li>
+<li>Local Rational Expectations Models (DSGE)<ul>
+<li>neoclassical model</li>
+<li>RBC model</li>
+</ul>
+</li>
+</ul>
+<h3 id="session-6">Session 6</h3>
+<ul>
+<li>Math: Function Approximation, Solution Methods (VFI)</li>
+<li>Rational Expectations Models (2)<ul>
+<li>consumption-savings</li>
+</ul>
+</li>
+</ul>
+<h3 id="session-8">Session 8</h3>
+<ul>
+<li>Math: Weighted Residuals, Solution Methods (TI, ITI)</li>
+<li>Rational Expectations (3)</li>
+</ul>
+<h3 id="session-9">Session 9</h3>
+<ul>
+<li>Rational Expectations Models (2): DSGE modeling<ul>
+<li>FRBNY?</li>
+</ul>
+</li>
+<li>Exam</li>
+</ul></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = ".",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="js/base.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+
+        <div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
+
+<!--
+MkDocs version : 1.1
+Build Date UTC : 2020-05-01 14:28:29
+-->
